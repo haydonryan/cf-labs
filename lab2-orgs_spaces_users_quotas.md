@@ -35,7 +35,11 @@ Log out as the developer user and back in as the organization manager.
 
 ### Create a space quota
 Create a space quota to allow only one instance of an application, that is 512mb in size.
-use cf space-quotas to view the quotas you created
-use set-space-quota to assign it to your space
-unset the quota.  (Note if you want to check out the quota in action don't unset or delete it, but you will need to do this after it fails in subsequent labs)
+
+Use cf space-quotas to view the quotas you created
+
+Use set-space-quota to assign it to your space
+
+Unset the quota.  (Note if you want to check out the quota in action don't unset or delete it, but you will need to do this after it fails in subsequent labs)
+
 Delete the space quota.
