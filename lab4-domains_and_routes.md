@@ -37,6 +37,8 @@ cf push your simple PHP application. Use your browser to verify that while you s
 
 Use App Manager or the CLI to view the route for your simple PHP application. We want this route to always contain a working application, even though we will upgrade the application's version.
 
+### Create a second version of your application
+
 Copy your PHP application directory, appending an "a" to the directory name. This will be the name of the version 2 application.
 
 In this new directory, modify the index.php file to contain "version 2" instead of "version 1".
@@ -45,6 +47,7 @@ cf push this version 2 application, naming it the same as the new directory name
 
 In a browser, access your version 2 application on its unique route.
 
+### Perform upgrade of app from v1 to v2.
 Let's assume your application is now ready to upgrade. Add a route on your version 2 app to point to the route on the version 1 app.  Refresh your browser a few times using the original route. Notice that both versions are sometimes displayed.
 
 Remove the route to the version 1 application. Now on the original route, you should only see version 2 of the application. The end users never experienced any downtime.
