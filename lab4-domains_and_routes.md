@@ -12,7 +12,7 @@ Approximate time: 25 minutes
 
 In the CLI, make sure you are targeting your correct installation org and development space.
 
-In the CLI, verify that PWS includes a PHP buildpack (use cf help if needed).
+In the CLI, verify that your Cloud Foundry includes a PHP buildpack (use cf help if needed).
 
 create a php-app-<your initials and a random number> directory. The name must be unique when deploying the app.
 
