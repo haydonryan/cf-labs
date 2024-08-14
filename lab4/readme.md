@@ -8,15 +8,15 @@ Approximate time: 25 minutes
 
 ## Prerequisites
 
-1. Using `cf buildpacks`, verify that your Cloud Foundry foundation includes a PHP buildpack.
+1. Using `cf buildpacks`, verify that your Cloud Foundry foundation includes a PHP buildpack. If you have a lot of buildpacks you might want to run `cf buildpacks | grep php`
 
 ## Exercises
 
 ### Push a simple PHP app
 
 1. Using `cf target`, make sure you are targeting your correct org and space for the labs.
-2. Create a `php-app` directory.
-3. Inside this directory, create a single file `index.php`:
+2. Clone this repository (of you haven't already), and cd into the lab4 directory directory.
+3. Inside this directory, verify that there is a file `index.php` that has the contents:
 ```php
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,7 @@ Approximate time: 25 minutes
     </body>
 </html>
 ```
-> :warning: Note: In Windows apps, when saving the `index.php` file, make sure the file type is set to "\*.\* All files". Otherwise, by default, Windows will append `.txt` to the file name, which will cause the deployment to fail when detecting which buildpack to use.  
+> :warning: Note: In Windows apps, when saving the `index.php` file, make sure the file type is set to "\*.\* All files". Otherwise, by default, Windows will append `.txt` to the file name, which will cause the deployment to fail when detecting which buildpack to use.
 4. At the command prompt, change your working directory to the `php-app` directory:
 ```shell
 cd php-app
@@ -38,7 +38,7 @@ cd php-app
 ```shell
 cf push php-app-YOUR_ID-blue
 ```
-6. Once the `-blue` version of your app is deployed, using `cf map-route`, map a new route to it without the `-blue` appended. This is the *production route* for your app. (Tip: You can find your foundation's DOMAIN using `cf routes`.)
+5. Once the `-blue` version of your app is deployed, using `cf map-route`, map a new route to it without the `-blue` appended. This is the *production route* for your app. (Tip: You can find your foundation's DOMAIN using `cf routes`, it's your apps domain.)
 ```shell
 cf map-route php-app-YOUR_ID-blue DOMAIN --hostname php-app-YOUR_ID
 ```
