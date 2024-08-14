@@ -29,15 +29,20 @@ Approximate time: 25 minutes
     </body>
 </html>
 ```
-4. Using `cf push`, deploy your simple PHP application with `-blue` in its name. Using your browser, verify that while you deploy the app, your application is down.
+> :warning: Note: In Windows apps, when saving the `index.php` file, make sure the file type is set to "\*.\* All files". Otherwise, by default, Windows will append `.txt` to the file name, which will cause the deployment to fail when detecting which buildpack to use.  
+4. At the command prompt, change your working directory to the `php-app` directory:
+```shell
+cd php-app
+```
+5. Using `cf push`, deploy your simple PHP application with `-blue` in its name. Using your browser, verify that while you deploy the app, your application is down.
 ```shell
 cf push php-app-YOUR_ID-blue
 ```
-5. Once the `-blue` version of your app is deployed, using `cf map-route`, map a new route to it without the `-blue` appended. This is the *production route* for your app. (Tip: You can find your foundation's DOMAIN using `cf routes`.)
+6. Once the `-blue` version of your app is deployed, using `cf map-route`, map a new route to it without the `-blue` appended. This is the *production route* for your app. (Tip: You can find your foundation's DOMAIN using `cf routes`.)
 ```shell
 cf map-route php-app-YOUR_ID-blue DOMAIN --hostname php-app-YOUR_ID
 ```
-6. Using Apps Manager or `cf route`, view the production route for your application. This route should always map to a working application, even while you upgrade the application.
+7. Using Apps Manager or `cf route`, view the production route for your application. This route should always map to a working application, even while you upgrade the application.
 
 ### Update your application and deploy this updated version
 
