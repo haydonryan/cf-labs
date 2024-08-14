@@ -2,23 +2,22 @@
 
 ## Goal
 
-Use routes to perform an application upgrade with blue/green deployment.
+Use Cloud Foundry routes to perform an application upgrade with the blue/green deployment strategy.
 
 Approximate time: 25 minutes
+
+## Prerequisites
+
+1. Using `cf buildpacks`, verify that your Cloud Foundry foundation includes a PHP buildpack.
 
 ## Exercises
 
 ### Push a simple PHP app
 
-In the CLI, make sure you are targeting your correct installation org and development space.
-
-In the CLI, verify that your Cloud Foundry includes a PHP buildpack (use cf help if needed).
-
-create a php-app-<your initials and a random number> directory. The name must be unique when deploying the app.
-
-Inside this directory create a single file "index.php"
-
-```
+1. Using `cf target`, make sure you are targeting your correct org and space for the labs.
+2. Create a `php-app` directory.
+3. Inside this directory, create a single file `index.php`:
+```php
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -26,28 +25,37 @@ Inside this directory create a single file "index.php"
         <title>Hello world</title>
     </head>
     <body>
-          <p>Hello world<?php echo " version 1"; ?></p>
+          <p>Hello world <?php echo "version 1"; ?></p>
     </body>
 </html>
 ```
+4. Using `cf push`, deploy your simple PHP application with `-blue` in its name. Using your browser, verify that while you deploy the app, your application is down.
+```shell
+cf push php-app-YOUR_ID-blue
+```
+5. Once the `-blue` version of your app is deployed, using `cf map-route`, map a new route to it without the `-blue` appended. This is the *production route* for your app. (Tip: You can find your foundation's DOMAIN using `cf routes`.)
+```shell
+cf map-route php-app-YOUR_ID-blue DOMAIN --hostname php-app-YOUR_ID
+```
+6. Using Apps Manager or `cf route`, view the production route for your application. This route should always map to a working application, even while you upgrade the application.
 
+### Update your application and deploy this updated version
 
-
-cf push your simple PHP application. Use your browser to verify that while you stage (push) the app, your application is down.
-
-Use App Manager or the CLI to view the route for your simple PHP application. We want this route to always contain a working application, even though we will upgrade the application's version.
-
-### Create a second version of your application
-
-Copy your PHP application directory, appending an "a" to the directory name. This will be the name of the version 2 application.
-
-In this new directory, modify the index.php file to contain "version 2" instead of "version 1".
-
-cf push this version 2 application, naming it the same as the new directory name. Verify that you now have two different applications with two different routes.
-
-In a browser, access your version 2 application on its unique route.
+1. Modify the `index.php` file to contain "version 2" instead of "version 1".
+2. Using `cf push`, deploy this version 2 application, appending `-green` this time:
+```shell
+cf push php-app-YOUR_ID-green
+```
+3. Using `cf apps` and `cf app`, validate that you now have two different app deployments with two different routes.
+4. Using your browser, validate your `-green` app deployment on its unique route.
 
 ### Perform upgrade of app from v1 to v2.
-Let's assume your application is now ready to upgrade. Add a route on your version 2 app to point to the route on the version 1 app.  Refresh your browser a few times using the original route. Notice that both versions are sometimes displayed.
 
-Remove the route to the version 1 application. Now on the original route, you should only see version 2 of the application. The end users never experienced any downtime.
+Once you have validated your updated app, you are ready to upgrade.
+
+1. Using `cf map-route`, first map the production route to the `-green` app deployment.
+2. Using your browser, reload the production route a few times. Notice that sometimes version 1 is returned, and sometimes version 2.
+3. Using `cf unmap-route`, unmap the production route from the `-blue` app deployment.
+4. Using your browser, reload the production route a few times. You should only see version 2 of the application.
+
+You have successfully upgraded your application! Note that at no time during the upgrade was your application unavailable.
