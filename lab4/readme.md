@@ -15,7 +15,7 @@ Approximate time: 25 minutes
 ### Push a simple PHP app
 
 1. Using `cf target`, make sure you are targeting your correct org and space for the labs.
-2. Clone this repository (of you haven't already), and cd into the lab4 directory directory.
+2. Clone this repository to your local disk (of you haven't already), and cd into the lab4 directory directory.
 3. Inside this directory, verify that there is a file `index.php` that has the contents:
 ```php
 <!DOCTYPE html>
@@ -30,9 +30,9 @@ Approximate time: 25 minutes
 </html>
 ```
 > :warning: Note: In Windows apps, when saving the `index.php` file, make sure the file type is set to "\*.\* All files". Otherwise, by default, Windows will append `.txt` to the file name, which will cause the deployment to fail when detecting which buildpack to use.
-4. At the command prompt, change your working directory to the `php-app` directory:
+4. At the command prompt, change your working directory to the `lab4` directory:
 ```shell
-cd php-app
+cd lab4
 ```
 5. Using `cf push`, deploy your simple PHP application with `-blue` in its name. Using your browser, verify that while you deploy the app, your application is down.
 ```shell
