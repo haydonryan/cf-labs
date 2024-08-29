@@ -1,0 +1,7 @@
+---
+applications:
+- name: test-Php
+  instances: 1
+  memory: 64mb
+  buildpacks:
+  - php_buildpack
