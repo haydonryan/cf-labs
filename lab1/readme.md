@@ -7,19 +7,14 @@ Approximate time: 30 minutes
 
 ## Exercise:
 ### Install the CLI
-Check to see if you have a CLI already installed. Open a terminal/command window and type `cf --version`. If you see that you have an installed version greater than 6, you can skip the install.
-
-Visit `https://console.run.pivotal.io/tools`. Download and run the installer for your platform.
-
-Verify your install by opening a terminal/command window and typing `cf --version`. You now have a Cloud Foundry client that can communicate with any Cloud Foundry installation.
-
+Check to see if you have the CLI already installed. Open a terminal/command window and type `cf --version` (you might need to type `cf8 --version`). If you see that you have cf installed.
 
 ### Explore cf help
 1. Type `cf help`. Scroll through the list of commands available to the CLI. Notice that they are organized by category. You will become familiar with most of the categories in this course.
 2. Type `cf help login`. Use this approach whenever you need a refresher on any of the CLI commands. Because login has an alias, you could have also have typed `cf help l`.
 
 ### Log into App Manager (TAS from a browser)
-In a browser, navigate to The Wells Endpoint - this will be provided on a whiteboard. This is Pivotal's hosted Cloud Foundry installation. If you already have an account, log in, otherwise create a free account.
+In a browser, navigate to The Apps Endpoint - this will be provided on a whiteboard. This is Pivotal's hosted Cloud Foundry installation. Use your username and password that you recieved via email.
 
 In Web UI, click on the Tools tab to see the connection information for the CLI. You will use this information to login to the CLI (in fact, you can copy and paste from this window).
 
