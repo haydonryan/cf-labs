@@ -8,7 +8,7 @@ Approximate time: 25 minutes
 
 ## Prerequisites
 
-1. Using `cf buildpacks`, verify that your Cloud Foundry foundation includes a PHP buildpack. If you have a lot of buildpacks you might want to run `cf buildpacks | grep php`
+1. Using `cf buildpacks`, verify that your Cloud Foundry foundation includes a PHP buildpack. If you have a lot of buildpacks you might want to run `cf buildpacks | grep php` (assuming you're using gitbash or a linux command line).
 
 ## Exercises
 
@@ -30,17 +30,18 @@ Approximate time: 25 minutes
 </html>
 ```
 > :warning: Note: In Windows apps, when saving the `index.php` file, make sure the file type is set to "\*.\* All files". Otherwise, by default, Windows will append `.txt` to the file name, which will cause the deployment to fail when detecting which buildpack to use.
+There will also be a manifest.yml file.
 4. At the command prompt, change your working directory to the `lab4` directory:
 ```shell
 cd lab4
 ```
 5. Using `cf push`, deploy your simple PHP application with `-blue` in its name. Using your browser, verify that while you deploy the app, your application is down.
 ```shell
-cf push php-app-YOUR_ID-blue
+cf push php-app-<YOUR_ID>-blue
 ```
-5. Once the `-blue` version of your app is deployed, using `cf map-route`, map a new route to it without the `-blue` appended. This is the *production route* for your app. (Tip: You can find your foundation's DOMAIN using `cf routes`, it's your apps domain.)
+5. Once the `-blue` version of your app is deployed, using `cf map-route` (remember cf help is your friend), map a new route to it without the `-blue` appended. This is the *production route* for your app. (Tip: You can find your foundation's DOMAIN using `cf routes`, it's your apps domain.)
 ```shell
-cf map-route php-app-YOUR_ID-blue DOMAIN --hostname php-app-YOUR_ID
+cf map-route php-app-<YOUR_ID>-blue <DOMAIN> --hostname php-app-<YOUR_ID>
 ```
 7. Using Apps Manager or `cf route`, view the production route for your application. This route should always map to a working application, even while you upgrade the application.
 
@@ -49,7 +50,7 @@ cf map-route php-app-YOUR_ID-blue DOMAIN --hostname php-app-YOUR_ID
 1. Modify the `index.php` file to contain "version 2" instead of "version 1".
 2. Using `cf push`, deploy this version 2 application, appending `-green` this time:
 ```shell
-cf push php-app-YOUR_ID-green
+cf push php-app-<YOUR_ID>-green
 ```
 3. Using `cf apps` and `cf app`, validate that you now have two different app deployments with two different routes.
 4. Using your browser, validate your `-green` app deployment on its unique route.
